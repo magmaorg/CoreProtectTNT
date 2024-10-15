@@ -26,10 +26,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.projectiles.ProjectileSource;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends JavaPlugin implements Listener {
@@ -48,7 +45,7 @@ public class Main extends JavaPlugin implements Listener {
         saveDefaultConfig();
         Plugin depend = Bukkit.getPluginManager().getPlugin("CoreProtect");
         if (depend == null) {
-            getPluginLoader().disablePlugin(this);
+            Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
         api = ((CoreProtect) depend).getAPI();
@@ -61,7 +58,7 @@ public class Main extends JavaPlugin implements Listener {
             return;
         }
         Block clickedBlock = e.getClickedBlock();
-        Location locationHead = clickedBlock.getLocation();
+        Location locationHead = Objects.requireNonNull(clickedBlock).getLocation();
         if (clickedBlock.getBlockData() instanceof Bed bed) {
             Location locationFoot = locationHead.clone().subtract(bed.getFacing().getDirection());
             if (bed.getPart() == Bed.Part.FOOT) {
@@ -387,7 +384,7 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void onBombHit(ProjectileHitEvent e) {
-        if (e.getHitEntity() instanceof ExplosiveMinecart || e.getEntityType() == EntityType.ENDER_CRYSTAL) {
+        if (e.getHitEntity() instanceof ExplosiveMinecart || e.getEntityType() == EntityType.END_CRYSTAL) {
             if (e.getEntity().getShooter() != null && e.getEntity().getShooter() instanceof Player) {
                 if (e.getHitEntity() != null) {
                     String sourceFromCache = probablyCache.getIfPresent(e.getEntity());

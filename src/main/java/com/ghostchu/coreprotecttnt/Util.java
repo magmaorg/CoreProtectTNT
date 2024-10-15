@@ -7,6 +7,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+@SuppressWarnings("deprecation")
 public class Util {
     public static void broadcastNearPlayers(Location location, String message) {
         if (message == null || message.isEmpty()) {
