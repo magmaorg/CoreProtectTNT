@@ -1,9 +1,21 @@
-*.class
-.settings/
-target/
+# Gradle
+/.gradle/
+/build/
+
+# IntelliJ
 .idea/
 *.iml
-.classpath
-.project
-/bin/
-/.idea/
+# Eclipse
+/.settings
+/.classpath
+/.project
+# Visual Studio Code
+/.vscode/
+
+# NMS jar
+craftbukkit.jar
+
+# run-paper gradle plugin
+run/
+
+bin/
