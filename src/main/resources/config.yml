@@ -10,6 +10,7 @@ fire:
   enable: true
   disable-unknown: true
   alert: "&cAn fire spreading/burning has been blocked because that caused by unknown object."
+  remove-fire-chain: true
 itemframe:
   enable: true
   disable-unknown: false

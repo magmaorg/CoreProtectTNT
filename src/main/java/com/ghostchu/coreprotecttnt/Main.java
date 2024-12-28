@@ -378,6 +378,14 @@ public class Main extends JavaPlugin implements Listener {
             } else if (section.getBoolean("disable-unknown", true)) {
                 e.setCancelled(true);
                 Util.broadcastNearPlayers(e.getIgnitingBlock().getLocation(), section.getString("alert"));
+                if (section.getBoolean("remove-fire-chain", true)) {
+                    if (e.getIgnitingBlock().getType().equals(Material.FIRE)) {
+                        e.getIgnitingBlock().setType(Material.AIR);
+                    }
+                    if (e.getBlock().getType().equals(Material.FIRE)) {
+                        e.getBlock().setType(Material.AIR);
+                    }
+                }
             }
         }
     }
